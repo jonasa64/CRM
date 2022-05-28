@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prospect;
 use Illuminate\Http\Request;
 
 class ProspectController extends Controller
@@ -13,7 +14,9 @@ class ProspectController extends Controller
      */
     public function index()
     {
-        //
+        $prospects = Prospect::all();
+
+        return Response()->json(["data" => $prospects], 200);
     }
 
     /**
@@ -30,12 +33,12 @@ class ProspectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Prospect $prospect)
     {
-        //
+        return Response()->json(["data" => $prospect], 200);
     }
 
     /**
@@ -56,8 +59,11 @@ class ProspectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Prospect $prospect)
     {
-        //
+        if ($prospect->delete())
+            return Response()->json(["data" => "prospect deleted"], 200);
+        else
+            return Response()->json(["data" => "prospect could not be deleted"], 200);
     }
 }
