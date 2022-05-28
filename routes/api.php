@@ -21,7 +21,7 @@ Route::get("/users/{user}", [UserController::class, "show"]);
 Route::put("/users/{user}", [UserController::class, "update"]);
 Route::delete("/users/{user}", [UserController::class, "destroy"]);
 
-Route::apiResource("prospects", [ProspectController::class]);
+Route::apiResource("prospects", ProspectController::class);
 
 
 
