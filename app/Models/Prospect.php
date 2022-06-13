@@ -10,4 +10,9 @@ class Prospect extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function prospectContact()
+    {
+        return $this->hasMany(ProspectContact::class);
+    }
 }
