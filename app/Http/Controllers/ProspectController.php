@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProspectStoreRequest;
 use App\Models\Prospect;
 use Illuminate\Http\Request;
 
@@ -22,12 +23,14 @@ class ProspectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \app\Http\Requests\ProspectStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProspectStoreRequest $request)
     {
-        //
+        Prospect::create($request->validated());
+
+        return Response()->json(["data" => "Prospect was created successfully"], 200);
     }
 
     /**
@@ -48,7 +51,7 @@ class ProspectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Prospect $prospect)
     {
         //
     }
@@ -64,6 +67,6 @@ class ProspectController extends Controller
         if ($prospect->delete())
             return Response()->json(["data" => "prospect deleted"], 200);
         else
-            return Response()->json(["data" => "prospect could not be deleted"], 200);
+            return Response()->json(["data" => "prospect could not be deleted"], 500);
     }
 }
