@@ -24,9 +24,11 @@ class ProspectContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Prospect $prospect)
     {
-        //
+        ProspectContact::updateOrCreate(['prospect_id' => $prospect->id], $request->validated());
+
+        return Response()->json(['data' => 'New contact successfully created']);
     }
 
     /**
@@ -47,9 +49,11 @@ class ProspectContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Prospect $prospect)
     {
-        //
+        $prospect->update($request->validated());
+
+        return Response()->json(['data' => 'prospect contact successfully updated']);
     }
 
     /**
