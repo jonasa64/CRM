@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProspectContact;
+use App\Models\Prospect;
 
 class ProspectContactController extends Controller
 {
