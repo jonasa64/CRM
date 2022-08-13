@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProspectStoreRequest;
+use App\Http\Requests\ProspectUpdateRequest;
 use App\Models\Prospect;
 use Illuminate\Http\Request;
 
@@ -51,9 +52,11 @@ class ProspectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prospect $prospect)
+    public function update(ProspectUpdateRequest $request, Prospect $prospect)
     {
-        //
+        $prospect->update($request->validated());
+
+        return Response()->json(['data' => 'prospect is updated']);
     }
 
     /**
