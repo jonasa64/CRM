@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('prospect_id');
             $table->string('phone')->nullable();
             $table->string('phone_mobil')->nullable();
-            $table->string('fax')->nullable();
             $table->string('address')->nullable();
             $table->string('address_2')->nullable();
             $table->string('city')->nullable();
